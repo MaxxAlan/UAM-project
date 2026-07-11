@@ -1,7 +1,0 @@
-osmnx
-geopandas
-scikit-learn
-pandas
-shapely
-numpy
-warnings

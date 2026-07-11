@@ -1,0 +1,607 @@
+/* CSS Variable Design System */
+:root {
+    --bg-darker: #0b0c10;
+    --bg-panel: #11141a;
+    --bg-panel-header: #171b26;
+    --color-accent: #00f3ff;
+    --color-accent-dim: rgba(0, 243, 255, 0.15);
+    --color-green: #39ff14;
+    --color-green-dim: rgba(57, 255, 20, 0.15);
+    --color-red: #ff3366;
+    --color-red-dim: rgba(255, 51, 102, 0.2);
+    --color-text-primary: #e2e8f0;
+    --color-text-secondary: #94a3b8;
+    --border-glow: 1px solid rgba(0, 243, 255, 0.25);
+    --font-hud: 'Orbitron', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-darker);
+    color: var(--color-text-primary);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+.app-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 400px;
+    background-color: var(--bg-panel);
+    border-right: var(--border-glow);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+    flex-shrink: 0;
+    overflow-y: auto;
+    height: 100vh;
+}
+
+/* Custom Scrollbar for Sidebar */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: rgba(0, 243, 255, 0.2);
+    border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent);
+}
+
+.sidebar-header {
+    background-color: var(--bg-panel-header);
+    padding: 20px;
+    border-bottom: var(--border-glow);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.sidebar-header h1 {
+    font-family: var(--font-hud);
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    color: var(--color-accent);
+    text-shadow: 0 0 8px rgba(0, 243, 255, 0.5);
+}
+
+.pulse-icon {
+    font-size: 1.8rem;
+    color: var(--color-accent);
+    animation: iconPulse 2s infinite ease-in-out;
+}
+
+.status-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--color-green);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.status-badge .dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-green);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--color-green);
+    animation: statusPulse 1.5s infinite;
+}
+
+/* Panel Sections */
+.panel-section {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.section-title {
+    font-family: var(--font-hud);
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Form inputs styling */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.input-with-btn {
+    display: flex;
+    gap: 8px;
+}
+
+input[type="text"], input[type="number"] {
+    flex-grow: 1;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    padding: 10px 12px;
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    transition: all 0.3s;
+}
+
+input[type="text"]:focus, input[type="number"]:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 8px rgba(0, 243, 255, 0.2);
+}
+
+.icon-btn {
+    background-color: var(--color-accent-dim);
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
+    width: 38px;
+    height: 38px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.icon-btn:hover {
+    background-color: var(--color-accent);
+    color: var(--bg-darker);
+    box-shadow: 0 0 10px var(--color-accent);
+}
+
+.icon-btn.active {
+    background-color: var(--color-green);
+    border-color: var(--color-green);
+    color: var(--bg-darker);
+    box-shadow: 0 0 10px var(--color-green);
+}
+
+/* Action Buttons */
+.action-btn {
+    width: 100%;
+    padding: 12px;
+    font-family: var(--font-hud);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-accent), #00a8ff);
+    color: var(--bg-darker);
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 243, 255, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 243, 255, 0.5);
+}
+
+.btn-secondary {
+    background-color: var(--color-green-dim);
+    border: 1px solid var(--color-green);
+    color: var(--color-green);
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background-color: var(--color-green);
+    color: var(--bg-darker);
+    box-shadow: 0 0 15px var(--color-green);
+}
+
+.btn-secondary:disabled, .btn-export:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.export-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-export {
+    flex: 1;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--color-text-primary);
+    padding: 10px;
+    font-size: 0.75rem;
+}
+
+.btn-export:hover:not(:disabled) {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    background-color: var(--color-accent-dim);
+}
+
+/* Telemetry Grid */
+.telemetry-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.tele-item {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.tele-item.full-width {
+    grid-column: span 2;
+}
+
+.tele-item .label {
+    font-size: 0.65rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+}
+
+.tele-item .value {
+    font-family: var(--font-hud);
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.value-cyan {
+    color: var(--color-accent);
+}
+
+.value-green {
+    color: var(--color-green);
+}
+
+/* Map Container */
+.map-container {
+    flex-grow: 1;
+    position: relative;
+    height: 100vh;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    background-color: var(--bg-darker);
+}
+
+/* Map HUD Elements */
+.map-hud-legend {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background-color: rgba(17, 20, 26, 0.85);
+    backdrop-filter: blur(10px);
+    border: var(--border-glow);
+    border-radius: 4px;
+    padding: 15px;
+    z-index: 1000;
+    pointer-events: auto;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.75rem;
+    margin-bottom: 8px;
+    color: var(--color-text-primary);
+}
+
+.legend-item:last-child {
+    margin-bottom: 0;
+}
+
+.legend-color {
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+}
+
+.legend-nfz {
+    background-color: var(--color-red);
+    box-shadow: 0 0 6px var(--color-red);
+}
+
+.legend-building-high {
+    background-color: #ffaa00;
+}
+
+.legend-building-med {
+    background-color: #0088ff;
+}
+
+.legend-path {
+    border-top: 3px dashed var(--color-green);
+    height: 0;
+    width: 20px;
+}
+
+.map-hud-status {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(17, 20, 26, 0.85);
+    backdrop-filter: blur(10px);
+    border: var(--border-glow);
+    border-radius: 4px;
+    padding: 10px 20px;
+    z-index: 1000;
+    display: flex;
+    gap: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    font-size: 0.8rem;
+}
+
+.hud-item i {
+    color: var(--color-accent);
+    margin-right: 6px;
+}
+
+/* Animations */
+@keyframes iconPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.7; }
+}
+
+@keyframes statusPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* Custom leaflet popups and paths */
+.leaflet-popup-content-wrapper {
+    background-color: var(--bg-panel) !important;
+    color: var(--color-text-primary) !important;
+    border: var(--border-glow) !important;
+    border-radius: 4px !important;
+}
+
+.leaflet-popup-tip {
+    background-color: var(--bg-panel) !important;
+}
+
+/* Custom pulsing marker for Drone simulation */
+.drone-pulse-marker {
+    background: var(--color-green);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(57, 255, 20, 0.7);
+    animation: markerPulse 1.2s infinite;
+}
+
+@keyframes markerPulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(57, 255, 20, 0.7);
+    }
+    70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 10px rgba(57, 255, 20, 0);
+    }
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(57, 255, 20, 0);
+    }
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Floating Map Search Container */
+.map-search-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1100;
+    width: 320px;
+    background: rgba(17, 20, 26, 0.85);
+    backdrop-filter: blur(10px);
+    border: var(--border-glow);
+    border-radius: 4px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    overflow: visible;
+}
+
+.search-input-group {
+    display: flex;
+    align-items: center;
+    padding: 2px 10px;
+}
+
+.search-input-group .search-icon {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    margin-right: 8px;
+}
+
+#map-search-input {
+    flex-grow: 1;
+    background: transparent;
+    border: none;
+    padding: 10px 0;
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+}
+
+#map-search-input:focus {
+    outline: none;
+}
+
+.clear-search-btn {
+    background: transparent;
+    border: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.clear-search-btn:hover {
+    color: var(--color-red);
+}
+
+/* Search results dropdown styling */
+.search-results-dropdown {
+    background: var(--bg-panel);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    max-height: 250px;
+    overflow-y: auto;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.search-result-item {
+    padding: 10px 15px;
+    font-size: 0.8rem;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+    transition: background-color 0.2s;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.search-result-item:hover {
+    background-color: var(--color-accent-dim);
+    color: var(--color-accent);
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+#city-selector:hover, #city-selector:focus {
+    border-color: var(--color-accent) !important;
+}
+
+/* ============================================
+   DRONE SIMULATION ICON & ANIMATION
+   ============================================ */
+
+/* Wrapper div for Leaflet divIcon — SVG rendered inside via html property */
+.drone-pulse-marker {
+    background: transparent !important;
+    border: none !important;
+    overflow: visible !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Disable ::before and ::after — SVG in JS handles all visuals */
+.drone-pulse-marker::before,
+.drone-pulse-marker::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* SVG sits at the center of the 36x36 marker */
+.drone-pulse-marker svg {
+    display: block;
+    overflow: visible;
+}
+
+
+/* Active simulation button state */
+#btn-simulate.active {
+    background: rgba(255, 60, 60, 0.15);
+    border-color: var(--color-red);
+    color: var(--color-red);
+    box-shadow: 0 0 10px rgba(255, 60, 60, 0.3);
+}
+
+/* Simulation progress bar in download container */
+.sim-progress-label {
+    font-size: 0.72rem;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+}
+
+/* ============================================
+   OFFLINE DOWNLOAD - IMPROVED STYLES
+   ============================================ */
+.offline-tip {
+    font-size: 0.7rem;
+    color: var(--color-text-secondary);
+    margin-top: 6px;
+    padding: 6px 8px;
+    background: rgba(255,255,255,0.03);
+    border-left: 2px solid var(--color-accent);
+    border-radius: 2px;
+}
+
+.export-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+.export-status-badge.success {
+    background: rgba(57,255,20,0.12);
+    color: var(--color-green);
+    border: 1px solid rgba(57,255,20,0.3);
+}
+
+.export-status-badge.error {
+    background: rgba(255,60,60,0.12);
+    color: var(--color-red);
+    border: 1px solid rgba(255,60,60,0.3);
+}
